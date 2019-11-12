@@ -1,0 +1,111 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Cadastro de Produtos
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+
+<br>
+<br>
+<h1 class="o textocor d-flex justify-content-center"> <b> Lista De Produtos </b> </h1>
+
+<a href="{{url_for('home_bp.home')}}"><button style="margin: 0 400px;" type="button" class="btn btn-outline-danger btn-lg">Bolos</button></a>
+
+<a href="{{url_for('compra_bp.listar')}}"><button style="margin: 0 90px;" type="button" class="btn btn-outline-danger btn-lg">Carrinho</button></a>
+<br>
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center">
+    <table style="width: 80%">
+        <thead class="">
+            <tr class="">
+                <th style="border-bottom: 1px solid #ddd;">Foto</th>
+                <th class="border-bottom: 1px solid #ddd;">Cod</th>
+                <th style="border-bottom: 1px solid #ddd;">Nome</th>
+                <th style="border-bottom: 1px solid #ddd;">Preço</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {%for b in blistar: %}
+            {% if b.vendedor.cod == session.get('codvendedor') %}
+            <tr>
+
+                <td style="border-bottom: 1px solid #ddd;"> <img style="width: 13rem;" src="../static/{{b.foto}}"></td>
+                <td style="border-bottom: 1px solid #ddd;">{{b.cod}}</td>
+                <td style="border-bottom: 1px solid #ddd;">{{b.nome}}</td>
+                <td style="border-bottom: 1px solid #ddd;">{{b.preco}}</td>
+
+
+                <td style="border-bottom: 1px solid #ddd;">
+                    <a class="btn btn-danger" href="/bolos/editar1?cod={{b.cod}}">Editar</a>
+                    <a class="btn btn-danger" href="/bolos/excluir?cod={{b.cod}}">Excluir</a>
+
+
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{b.cod}}">
+                        + Detalhes
+                    </button>
+
+
+                    <div class="modal fade" id="{{b.cod}}" tabindex="-1" role="dialog" aria-labelledby="b.cod"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="o textocor modal-title" id="b.cod"> <b>{{b.nome}}</b></h1>
+
+                                </div>
+                                <div class="modal-body">
+
+                                    <p><b> Quantidade no Estoque </b></p>
+                                    <p>{{b.quantidade}}</p>
+                                    <hr>
+                                    <p><b> Sabor da Massa </b></p>
+                                    <p>{{b.sabor_massa}}</p>
+                                    <hr>
+                                    <p><b> Sabor do Recheio </b></p>
+                                    <p>{{b.sabor_recheio}}</p>
+                                    <hr>
+                                    <p><b> Sabor da Cobertura </b></p>
+                                    <p>{{b.sabor_cobertura}}</p>
+                                    <hr>
+                                    <p><b> Tipo </b></p>
+                                    <p>{{b.tipo.nome}}</p>
+                                    <hr>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+<br>
+<div class="d-flex justify-content-center">
+    <a class="btn btn-danger" href="/bolos/cadastrar">Adicionar</a>
+</div>
+{% endblock %}

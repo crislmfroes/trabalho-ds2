@@ -1,0 +1,6 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% macro render_search_form(form, route) %}
+<form method="post" action={{url_for(route)}}>
+    {{wtf.quick_form(form, extra_classes, form_type='horizontal')}}
+</form>
+{% endmacro %}

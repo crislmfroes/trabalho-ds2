@@ -1,0 +1,84 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Cadastro de Produtos
+{% endblock %}
+{% block body %}
+
+
+
+
+    <br>
+    <br>
+
+    <h1 class="o textocentro textocor"> <b>Editar Informações de Produto </b> </h1>
+
+    <br>
+    <br>
+
+
+
+    <form action="POST">
+
+        <label class="d-flex justify-content-center" for="">Nome do Item</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.nome}}" type="text">
+        </div>
+  <br>
+        <br>
+
+        <label class="d-flex justify-content-center" for="">Sabor da Massa</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.sabor_massa}}" type="text">
+        </div>
+
+        <br>
+        <br>
+
+        <label class="d-flex justify-content-center" for="">Sabor do Recheio</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.sabor_recheio}}" type="text">
+        </div>
+
+        <br>
+        <br>
+
+        <label class="d-flex justify-content-center" for="">Sabor da Cobertura</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.sabor_cobertura}}" type="text">
+        </div>
+
+        <br>
+        <br>
+
+        <label class="d-flex justify-content-center" for="">Quantidade de Produto no Estoque</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.quantidade}}" type="number">
+        </div>
+
+        <br>
+        <br>
+
+        <label class="d-flex justify-content-center" for="">Preço do Item</label>
+        <div class="d-flex justify-content-center">
+            <input class="col-md-4" value="{{produto.preco}}" type="number">
+        </div>
+
+        <br>
+        <br>
+
+         <select class="custom-select" id="inputGroupSelect01">
+             <option value="bolo">Bolo</option>
+             <option value="acompanhamento">Acompanhamento</option>
+         </select>
+
+         <br>
+         <br>
+
+         <div class="textocentro">
+             <button type="submit" class="btn btn-danger">Salvar</button>
+         </div>
+
+    </form>
+
+{% endblock %}

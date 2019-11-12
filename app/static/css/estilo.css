@@ -1,0 +1,32 @@
+
+
+.textocor{
+    color: rgb(185, 0, 52);
+}
+
+
+
+.c{
+        display: inline;
+        margin-left:0 50 px;
+
+}
+
+
+.textocentro{
+    text-align: center;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.navbar {
+    background-image: url("2.png");
+}
+
+.o{
+    font-family: 'Cookie', cursive;
+}
+
+

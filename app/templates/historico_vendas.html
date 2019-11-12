@@ -1,0 +1,111 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Cadastro de Produtos
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+
+<br>
+<br>
+<h1 class="o textocor d-flex justify-content-center"> <b> Histórico de Vendas </b> </h1>
+
+<br>
+<br>
+
+<div class="d-flex justify-content-center">
+
+
+        <table style="width: 80%" class="table table-dark table-info table-striped table-hover" style="color: white">
+
+                <tbody>
+
+                        {% for compra in compras %}
+                        {% for lote in compra.lotes %}
+                        {% if lote.produto.codvendedor == session.get('codvendedor') %}
+                        {% set ns = namespace(total=0) %}
+                        
+                        {% set ns.total = ns.total + (lote.quantidade*lote.produto.preco) %}
+                        
+                        
+                  <tr>
+                    <th scope="row"></th>
+                    <td>{{compra.data.strftime("%d/%m/%Y")}}</td>
+                    <td>{{lote.produto.nome}}</td>
+                    <!--<td>23:57</td>-->
+                    <!--<td>Bolo de Chocolate</td>-->
+                    <td>R$ {{ns.total}}</td>
+                    <td>
+        
+                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#cod">
+                                    + Detalhes
+                                </button>
+            
+            
+                                <div style="color: white" class="modal fade" id="cod" tabindex="-1" role="dialog" aria-labelledby="cod"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div style="background-color: red; background-image: linear-gradient(#7126a3, #971834);" class="modal-content">
+                                            <div class="modal-header d-flex justify-content-center">
+                                                <h1 class="o modal-title" id="cod"> 
+                                                    <b>Detalhes da Venda</b></h1>
+            
+                                            </div>
+                                            <div class="modal-body">
+                                                <br>
+                                                {% for lote in compra.lotes %}
+                                                <h3><b> Item: </b></h3>
+                                                <p>{{lote.produto.nome}}</p>
+                                                <p><b> Quantidade Comprada </b></p>
+                                                <p>{{lote.quantidade}}</p>
+                                                <p><b> Valor Total </b></p>
+                                                <p>R$ {{lote.quantidade*lote.produto.preco}}</p>
+                                                <br>
+                                                <br>
+                                                <hr>
+
+                                                <div>
+                                                        <h4><b>Informações do Comprador</b></h4>
+                                                        <br>
+                                                        <p><b> Comprador </b></p>
+                                                        <p>{{compra.usuario.nome}}</p>
+                                                        <br>
+                                                        <p><b> Telefone para Contato </b></p>
+                                                        <p>{{compra.usuario.telefone}}</p>
+                                                    </div>
+                                                    {% endfor %}
+        
+                                            </div>
+            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                    </td>
+                  </tr>
+        
+                 
+                  {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+
+
+
+
+
+</div>
+
+
+
+<br>
+<br>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends '_base.html' %}
+   {% block body %}
+    <br>
+
+    <br>
+
+    <h1 class="o textocor textocentro"><b>Carrinho de Compras</b></h1>
+
+    <br>
+    <br>
+
+
+
+    <a href="{{url_for('home_bp.home')}}"><button style="margin: 0 400px;" type="button" class="btn btn-outline-danger btn-lg">Bolos</button></a>
+
+    <a href="{{url_for('compra_bp.listar')}}"><button style="margin: 0 90px;" type="button" class="btn btn-outline-danger btn-lg">Carrinho</button></a>
+    <br>
+    <br>
+    <br>
+
+    <hr style="border-top: 1px solid red;">
+
+    <br>
+    <br>
+    <br>
+
+   {% for item in items %}
+   <div class="d-flex justify-content-center row">
+       <div style="float:left;" clas="col-4">
+           <h5 style="margin: 0 1px;"> <b> {{item.nome}} </b> </h5>
+   
+       </div>
+   
+       
+       <div class="textocentro col-4" style="margin: 0 15px;">
+       
+           <a href={{url_for('compra_bp.add', cod=item.cod, quantity=-1)}} class="btn btn-danger inline">-</a>
+           <p style="margin: 0 10px;" class="inline">{{item.quantidade}}</p>
+           <a href={{url_for('compra_bp.add', cod=item.cod)}} class="btn btn-success inline">+</a>
+           </div>
+   
+       </div>
+   </div>
+   <br>
+    {% endfor %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="textocentro">
+    <a href={{url_for('home_bp.home')}} class="btn btn-success">Adicionar mais Itens</a>
+    </div>
+    
+    <br>
+    <br>
+
+    <hr style="border-top: 1px solid red;">
+
+<br>
+    <h1 class="o textocentro textocor"><b>Preço Total: </b></h1>
+    <h5 class="textocentro">R${{"{:,.2f}".format(preco_total).replace('.', ',')}}</h5>
+    <br>
+<br>
+<br>
+<br>
+
+<div class="textocentro">
+    <a class="btn btn-danger" href={{url_for('compra_bp.finalizar')}}>Finalizar Pedido</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends '_base.html' %}
+{% from 'busca_form.html' import render_search_form %}
+{% block title %}
+Cadastro de Produtos
+{% endblock %}
+{% block body %}
+
+
+
+
+
+<br>
+
+<br>
+
+<h1 class="o textocor textocentro"> <b>Produtos</b></h1>
+
+<br>
+<br>
+
+
+
+<a href="{{url_for('home_bp.home')}}"><button style="margin: 0 400px;" type="button" class="btn btn-outline-danger btn-lg">Bolos</button></a>
+
+<a href="{{url_for('compra_bp.listar')}}"><button style="margin: 0 90px;" type="button" class="btn btn-outline-danger btn-lg">Carrinho</button></a>
+<br>
+<br>
+<br>
+<!--{{render_search_form(form, route)}}-->
+<br>
+
+<form action="/home/pesquisar" method="POST">
+
+    <div class="d-flex justify-content-center">
+
+        <input name="pesquisa" style="width: 20%; border-radius: 30px; border: 1px solid rgb(185, 0, 52);"
+            class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+
+        <br>
+        <br>
+
+        <div class="text-center">
+            <button style="border-radius: 17px;" class="btn btn-danger my-2 my-sm-0" type="submit">Pesquisar</button>
+        </div>
+
+
+    </div>
+</form>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="container">
+{% for bolo in bolos %}
+<div class="row">
+    <div class="col">
+         <img style="width: 15rem;margin: 0 150px;float:left;" class="card-img-top" src="../static/{{bolo.foto}}" alt="Card image cap">
+        <div style="float:left;">
+            <h3 class="o" style="margin: 0 0px;"> <b>{{bolo.nome}}</b></h3>
+            <br>
+
+            <h4 class="o">Vendedor: {{bolo.vendedor.nome}}</h4>
+            <br>
+            <h4 class="o">Sabor da Massa: {{bolo.sabor_massa}}</h4>
+            <br>
+            <h4 class="o">Sabor do Recheio: {{bolo.sabor_recheio}}</h4>
+            <br>
+            <h4 class="o">Sabor da Cobertura: {{bolo.sabor_cobertura}}</h4>
+            <br>
+
+            <br>
+            <br>
+
+            <h3 class="textocor" style="margin: 0 1px;">Preço:</h3>
+            <h5>R$ {{"${:,.2f}".format(bolo.preco)}}</h5>
+            <br>
+
+            {% if session.get('isvendedor') != True %}
+            <a href={{url_for('compra_bp.add', cod=bolo.cod)}} class="btn btn-warning">Adicionar ao Carrinho</a>
+            {% endif %}
+
+
+            
+
+            <br>
+            <hr>
+
+        </div>
+    </div>
+<div>
+
+{% endfor %}
+</div>
+
+
+{% endblock %}

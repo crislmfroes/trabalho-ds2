@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Cadastro de Produtos
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+
+<br>
+<br>
+<h1 class="o textocor d-flex justify-content-center"> <b> Lista De Tipos de Produto </b> </h1>
+
+<br>
+<br>
+<div class="d-flex justify-content-center">
+  <table style="width: 80%">
+    <thead class="">
+      <tr class="">
+        <th class="border-bottom: 1px solid #ddd;">cod</th>
+        <th style="border-bottom: 1px solid #ddd;">nome</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {%for tipo in tipos: %}
+      {% if session.get('admin') != None %}
+      <tr>
+        <td style="border-bottom: 1px solid #ddd;">{{tipo.cod}}</td>
+        <td style="border-bottom: 1px solid #ddd;">{{tipo.nome}}</td>
+
+
+
+        <td style="border-bottom: 1px solid #ddd;">
+          <a class="btn btn-danger" href="/tipo_produto/editar?cod={{tipo.cod}}">Editar</a>
+          <a class="btn btn-danger" href="/tipo_produto/excluir?cod={{tipo.cod}}">Excluir</a>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+</div>
+<br>
+<div class="d-flex justify-content-center">
+  <a class="btn btn-danger" href="/tipo_produto/cadastrar">Cadastrar</a>
+</div>
+{% endblock %}

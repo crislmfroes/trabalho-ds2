@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% from 'form.html' import render_form %}
+{% block title %}
+Cadastro de Usuários
+{% endblock %}
+{% block body %}
+
+
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                {{render_form(form, route, title, cod)}}
+            </div>
+        </div>
+    </div>
+
+
+   
+
+{% endblock %}

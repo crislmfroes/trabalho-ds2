@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+{% from 'form.html' import render_form %}
+{% block title %}
+Cadastro de Tipo de Produto
+{% endblock %}
+{% block body %}
+<div style="float:left;">
+  <h3 style="margin: 0 1px;">Cadastro de Tipo de Produto</h3>
+  <br>
+  {{render_form(form, route, cod=cod)}}
+</div>
+{% endblock %}

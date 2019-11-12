@@ -1,0 +1,14 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% macro render_form(form, route, title, cod) %}
+{% if cod %}
+<form method="post" action={{url_for(route, cod=cod)}} enctype="multipart/form-data">
+    <h1>{{title}}</h1>
+    {{wtf.quick_form(form, extra_classes)}}
+</form>
+{% else %}
+<form method="post" action={{url_for(route)}} enctype="multipart/form-data">
+    <h1>{{title}}</h1>
+    {{wtf.quick_form(form, extra_classes)}}
+</form>
+{% endif %}
+{% endmacro %}

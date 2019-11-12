@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+{% from 'form.html' import render_form %}
+{% block body %}
+<div class="col-6 offset-3">
+
+    <br>
+
+    <br>
+
+    <h2 class="textocentro">BOLOS</h2>
+
+    <br>
+    <br>
+
+
+    <!--h3 class="textocentro">Insira seu Endereço</h3>
+    <br>
+    <div class="d-flex justify-content-center">
+        <input class="col-md-4" type="text">
+    </div-->
+<br>
+<br>
+
+   <!--div class="dropdown show d-flex justify-content-center">
+       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+           Forma de Pagamento
+       </a>
+
+       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <a class="dropdown-item" href="#">Action</a>
+           <a class="dropdown-item" href="#">Another action</a>
+       </div>
+   </div-->
+
+   <br>
+   <br>
+   <br>
+   <br>
+
+   <h5 class="textocentro"> <b> Total a ser Pago: </b> </h5>
+   <h5 class="textocentro">R$ R${{"{:,.2f}".format(preco_total).replace('.', ',')}}</h5>
+
+
+    {{render_form(form=form, route=route)}}
+
+   <!--br>
+   <br>
+   <br>
+   <button style="margin: 0 280px;" type="button" class="btn btn-danger">Cancelar</button>
+   <button type="button" style="margin: 0 180px;"  class="btn btn-success">Finalizar Compra</button-->
+
+
+
+
+
+
+
+</div>
+{% endblock %}
