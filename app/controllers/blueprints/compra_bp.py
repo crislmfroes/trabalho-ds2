@@ -58,8 +58,9 @@ def finalizar():
       produto = Produto.query.filter_by(cod=produto_session['cod']).first()
       produto.quantidade -= produto_session['quantidade']
       lote = CompraProduto()
-      lote.produto = produto 
+      lote.produto = produto
       lote.quantidade = produto_session['quantidade']
+      lote.preco_unitario = produto.preco
       lote.compra = compra
       #compra.lotes.append(lote)
       print(lote)

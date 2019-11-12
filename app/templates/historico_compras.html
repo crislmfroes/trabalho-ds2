@@ -24,7 +24,7 @@ Cadastro de Produtos
         {% if compra.usuario.cod == session.get('codusuario') %}
         {% set ns = namespace(total=0) %}
         {% for lote in compra.lotes %}
-        {% set ns.total = ns.total + (lote.quantidade*lote.produto.preco) %}
+        {% set ns.total = ns.total + (lote.quantidade*lote.preco_unitario) %}
         {% endfor %}
           <tr>
             <th scope="row"></th>
@@ -61,7 +61,7 @@ Cadastro de Produtos
                                         <p><b> Quantidade Comprada </b></p>
                                         <p>{{lote.quantidade}}</p>
                                         <p><b> Valor Total </b></p>
-                                        <p>R$ {{lote.quantidade*lote.produto.preco}}</p>
+                                        <p>R$ {{lote.quantidade*lote.preco_unitario}}</p>
                                         <br>
                                         
                                         <b> Vendedor </b></p>
