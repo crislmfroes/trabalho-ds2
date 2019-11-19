@@ -68,7 +68,9 @@
 <br>
 
 <div class="textocentro">
+    {% if session.get('cart')|length > 0 %}
     <a class="btn btn-danger" href={{url_for('compra_bp.finalizar')}}>Finalizar Pedido</a>
+    {% endif %}
 </div>
 
 {% endblock %}

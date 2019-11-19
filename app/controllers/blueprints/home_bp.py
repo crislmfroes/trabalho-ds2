@@ -7,7 +7,6 @@ from app.forms.busca_form import BuscaForm
 
 home_bp = Blueprint('home_bp', __name__, url_prefix='/home')
 
-'''
 @home_bp.route('/pesquisar', methods=['GET', 'POST'])
 def pesquisar():
     form = BuscaForm(request.form)
@@ -17,7 +16,6 @@ def pesquisar():
       return render_template('home.html', form=form, bolos=list, route=request.endpoint)
     list=Produto.query.filter(Produto.nome==p).all()
     return render_template('home.html',form=form, bolos=list, route=request.endpoint)
-'''
 
 @home_bp.route('/', methods=['GET', 'POST'])
 def home():
