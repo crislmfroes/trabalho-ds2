@@ -47,6 +47,21 @@
             <li class="nav-item">
                 <a class="nav-link" href={{url_for('bolo_bp.listar')}}>Meus Produtos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('bolo_bp.vendas')}}>Minhas Vendas</a>
+            </li>
+            {% if session.get('admin') == True %}
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('tipo_bp.listar')}}>Listagem de Categorias</a>
+            </li>
+            {% endif %}
+            {% elif session.get('codusuario') %}
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('bolo_bp.compras')}}>Minhas Compras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('compra_bp.listar')}}>Meu Carrinho</a>
+            </li>
             {% endif %}
             
         </ul>
