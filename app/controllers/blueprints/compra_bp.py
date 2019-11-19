@@ -14,6 +14,8 @@ compra_bp = Blueprint('compra_bp', __name__, url_prefix='/carrinho')
 @compra_bp.before_request
 def populate():
   print(session.get('cart'))
+  if not session.get('codusuario'):
+    return redirect(url_for('usuario_bp.login'))
   if session.get('cart') is None:
     session['cart'] = []
 
