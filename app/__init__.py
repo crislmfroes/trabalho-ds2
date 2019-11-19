@@ -56,6 +56,7 @@ def cria():
         adm = Vendedor()
         adm.nome = 'Cris Lima Froes'
         adm.admin = True
+        adm.telefone = '11111111111'
         adm.cep = '123456789'
         adm.email = 'admin@gmail.com'
         adm.senha = md5('GlaDOS'.encode('utf-8')).hexdigest()
