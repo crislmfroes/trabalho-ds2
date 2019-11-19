@@ -39,7 +39,6 @@ from app.models.tipo_model import TipoProduto
 
 from app.controllers.blueprints.usuario_bp import usuario_bp
 from app.controllers.blueprints.produto_bp import bolo_bp
-from app.controllers.blueprints.vendedor_bp import vendedor_bp
 from app.controllers.blueprints.home_bp import home_bp
 from app.controllers.blueprints.tipo_bp import tipo_bp
 from app.controllers.blueprints.compra_bp import compra_bp

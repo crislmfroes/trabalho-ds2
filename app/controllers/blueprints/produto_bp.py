@@ -28,12 +28,12 @@ bolo_bp = Blueprint('bolo_bp', __name__, url_prefix='/bolos')
 def filtra():
     if request.endpoint == 'bolo_bp.compras':
         if session.get('isvendedor') or session.get('codusuario') is None:
-            return redirect(url_for('usuario_bp.login'))
+            return redirect(url_for('generic_bp.login'))
     else:
         if not session.get('isvendedor'):
-            return redirect(url_for('vendedor_bp.login'))
+            return redirect(url_for('generic_bp.login'))
     '''if not session.get('isvendedor') and request.endpoint not in ['bolo_bp.compras']:
-        return redirect(url_for('vendedor_bp.login'))
+        return redirect(url_for('generic_bp.login'))
     if not session.get('isvendedor') and session.get('codusuario') and request.endpoint == 'bolo_bp.compras':
         '''
 

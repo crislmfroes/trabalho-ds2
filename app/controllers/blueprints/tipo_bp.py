@@ -7,7 +7,7 @@ tipo_bp = Blueprint('tipo_bp', __name__, url_prefix='/tipo_produto')
 @tipo_bp.before_request
 def filter():
   if session.get('admin') != True:
-    return redirect(url_for('vendedor_bp.login'))
+    return redirect(url_for('generic_bp.login'))
 
 @tipo_bp.route('/listar', methods=['GET'])
 def listar():

@@ -9,7 +9,6 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.exc import ProgrammingError
 from app import usuario_bp
 from app import bolo_bp
-from app import vendedor_bp
 from app import home_bp
 from app import tipo_bp
 from app import compra_bp
@@ -32,14 +31,12 @@ if not os.path.isdir(os.path.join('app/static')):
 
 from app import usuario_bp
 from app import bolo_bp
-from app import vendedor_bp
 from app import home_bp
 from app import tipo_bp
 from app import compra_bp
 
 app.register_blueprint(usuario_bp)
 app.register_blueprint(bolo_bp)
-app.register_blueprint(vendedor_bp)
 app.register_blueprint(home_bp)
 app.register_blueprint(tipo_bp)
 app.register_blueprint(compra_bp)

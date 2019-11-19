@@ -27,20 +27,16 @@
             </li>
             {% if session.get('codusuario') != None %}
             <li class="nav-item">
-                <a class="nav-link" href={{url_for('usuario_bp.logout')}}>Logout</a>
+                <a class="nav-link" href={{url_for('generic_bp.logout')}}>Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href={{url_for('usuario_bp.login')}}>Login(Cliente)</a>
+                <a class="nav-link" href={{url_for('generic_bp.login')}}>Login</a>
             </li>
             {% endif %}
             {% if session.get('codvendedor') != None %}
             <li class="nav-item">
-                <a class="nav-link" href={{url_for('vendedor_bp.logout')}}>Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href={{url_for('vendedor_bp.login')}}>Login(Vendedor)</a>
+                <a class="nav-link" href={{url_for('generic_bp.logout')}}>Logout</a>
             </li>
             {% endif %}
             {% if session.get('isvendedor') == True %}
