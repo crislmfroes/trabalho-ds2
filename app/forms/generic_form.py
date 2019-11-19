@@ -22,6 +22,16 @@ class GenericForm(FlaskForm):
     submit = SubmitField('Enviar')
 
 
+class GenericFormSemTipo(FlaskForm):
+    nome = StringField(label='Digite seu nome de usuário')
+    email = StringField(
+        label='Digite seu endereço de Email', validators=[Email()])
+    telefone = StringField(label='Digite seu telefone',
+                           validators=[Length(min=11, max=11)])
+
+    submit = SubmitField('Enviar')
+
+
 class GenericLoginForm(FlaskForm):
     email = StringField(
         label='Digite seu endereço de Email', validators=[Email()])

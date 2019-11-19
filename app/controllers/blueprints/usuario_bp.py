@@ -5,7 +5,7 @@ from flask.helpers import url_for
 from werkzeug.utils import redirect
 
 from app import Usuario, db, Vendedor
-from app.forms.generic_form import GenericForm, GenericLoginForm
+from app.forms.generic_form import GenericForm, GenericLoginForm, GenericFormSemTipo
 
 usuario_bp = Blueprint('generic_bp', __name__, url_prefix='/usuario')
 
@@ -28,6 +28,27 @@ def cadastro():
         return redirect(url_for('generic_bp.login'))
     return render_template('cadastro_user.html', form=form, route='generic_bp.cadastro')
 
+@usuario_bp.route('/editar', methods=['GET', 'POST'])
+def editar():
+    cod = request.args.get('cod')
+    print(cod)
+    if session.get('isvendedor') == True:
+        usuario = Vendedor.query.filter_by(cod=cod).first()
+    else:
+        usuario = Usuario.query.filter_by(cod=cod).first()
+    form = GenericFormSemTipo(request.form)
+    if form.validate_on_submit():
+        usuario.nome = form.nome.data
+        usuario.email = form.email.data
+        usuario.telefone = form.telefone.data
+        db.session.add(usuario)
+        db.session.commit()
+        return redirect(url_for('home_bp.home'))
+    form.nome.data = usuario.nome
+    form.email.data = usuario.email
+    form.telefone.data = usuario.telefone
+    return render_template('editar_user.html', form=form, route='generic_bp.editar', cod=cod)
+
 
 @usuario_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -44,7 +65,7 @@ def login():
             if form.tipo.data == 'cliente':
                 session['codusuario'] = usuario.cod
                 session['nomeusuario'] = usuario.nome
-                session['isvendedor'] = form.tipo.data == 'vendedor'
+                session['isvendedor'] = form.tipo.data == False
                 return redirect(url_for('home_bp.home'))
             elif form.tipo.data == 'vendedor':
                 session.clear()
