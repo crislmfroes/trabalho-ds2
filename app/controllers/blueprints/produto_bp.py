@@ -111,7 +111,7 @@ def editar1():
             bolo.foto = arquivo_data.caminho
         db.session.add(bolo)
         db.session.commit()
-        return redirect("/bolos/cadastrar")
+        return redirect(url_for('bolo_bp.listar'))
     form.nome.data = bolo.nome
     form.saborMassa.data = bolo.sabor_massa
     form.saborRecheio.data = bolo.sabor_recheio
