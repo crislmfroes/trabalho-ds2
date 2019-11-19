@@ -7,17 +7,59 @@ from app.forms.busca_form import BuscaForm
 
 home_bp = Blueprint('home_bp', __name__, url_prefix='/home')
 
-'''
+
+
 @home_bp.route('/pesquisar', methods=['GET', 'POST'])
 def pesquisar():
     form = BuscaForm(request.form)
     p = request.form["pesquisa"]
-    if form.validate_on_submit():
-      list=Produto.query.filter(Produto.nome==p).all()
-      return render_template('home.html', form=form, bolos=list, route=request.endpoint)
-    list=Produto.query.filter(Produto.nome==p).all()
-    return render_template('home.html',form=form, bolos=list, route=request.endpoint)
-'''
+    filtro = request.form["filtro"]
+    tipo = request.form["tipo"]
+      
+
+    if tipo=="todostipos":
+        if filtro=="massa":
+          list=Produto.query.filter(Produto.sabor_massa.like('%'+p+'%')).all()
+        
+        if filtro=="produto":
+          list=Produto.query.filter(Produto.nome.like('%'+p+'%')).all()
+        
+        if filtro=="recheio":
+          list=Produto.query.filter(Produto.sabor_recheio.like('%'+p+'%')).all()
+
+        if filtro=="cobertura":
+          list=Produto.query.filter(Produto.sabor_cobertura.like('%'+p+'%')).all()
+
+        if filtro=="tudo":
+          list=Produto.query.all()
+
+    else:
+
+        if filtro=="massa":
+          list=Produto.query.filter(Produto.sabor_massa.like('%'+p+'%')).join(Produto.tipo).filter(TipoProduto.nome.like('%'+tipo+'%')).all()
+        
+        if filtro=="produto":
+          list=Produto.query.filter(Produto.nome.like('%'+p+'%')).filter(Produto.tipo.nome.like('%'+tipo+'%')).all()
+        
+        if filtro=="recheio":
+          list=Produto.query.filter(Produto.sabor_recheio.like('%'+p+'%')).filter(Produto.tipo.nome.like('%'+tipo+'%')).all()
+
+        if filtro=="cobertura":
+          list=Produto.query.filter(Produto.sabor_cobertura.like('%'+p+'%')).filter(Produto.tipo.nome.like('%'+tipo+'%')).all()
+
+        if filtro=="tudo":
+          list=Produto.query.filter(Produto.tipo.nome.like('%'+tipo+'%')).all()
+
+      
+    return render_template('home.html', form=form, bolos=list, route=request.endpoint)
+
+
+    #list=Produto.query.filter(Produto.nome==p).all()
+    #return render_template('home.html',form=form, bolos=list, route=request.endpoint)
+
+
+
+
 
 @home_bp.route('/', methods=['GET', 'POST'])
 def home():

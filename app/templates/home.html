@@ -29,7 +29,7 @@ Cadastro de Produtos
 <!--{{render_search_form(form, route)}}-->
 <br>
 
-<form action="/bolos/pesquisar" method="POST">
+<form action="/home/pesquisar" method="POST">
 
     <div class="d-flex justify-content-center">
 
@@ -37,15 +37,17 @@ Cadastro de Produtos
             class="form-control mr-sm-2" type="search" placeholder="O que você procura?" aria-label="Search">
 
         
-            <select style="background-color:black; color:white; border-radius: 30px;">
+            <select name="filtro" style="background-color:black; color:white; border-radius: 30px;">
+                <option value="tudo">Tudo</option>
                 <option value="produto">Produto</option>
-                <option value="2">Sabor de Massa</option>
-                <option value="3">Sabor de Recheio</option>
-                <option value="3">Sabor de Cobertura</option>
-                <option value="3">Vendedor</option>
+                <option value="massa">Sabor de Massa</option>
+                <option value="recheio">Sabor de Recheio</option>
+                <option value="cobertura">Sabor de Cobertura</option>
+                <option value="vendedor">Vendedor</option>
             </select>
 
-            <select style="background-color:black; color:white; border-radius: 30px;">
+            <select name="tipo" style="background-color:black; color:white; border-radius: 30px;">
+            <option value="todostipos">Todos os Tipos</option>
             {% for t in tipos %}
             <option value={{t.nome}}>{{t.nome}}</option>
             {% endfor %}

@@ -45,15 +45,6 @@ def listar():
 
 
 
-@bolo_bp.route('/pesquisar', methods=['GET', 'POST'])
-def pesquisar():
-    form = BuscaForm(request.form)
-    p = request.form["pesquisa"]
-
-    if form.validate_on_submit():
-      list=Produto.query.filter(Produto.nome==p).all()
-      return render_template('home.html', form=form, bolos=list, route=request.endpoint)
-
 
 
 @bolo_bp.route('/compras')
