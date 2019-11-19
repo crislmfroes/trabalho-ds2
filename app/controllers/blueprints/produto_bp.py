@@ -5,6 +5,7 @@ from app import Produto, db, Vendedor, TipoProduto, Compra
 from ...models.compra_model import Compra, CompraProduto
 from app.forms.bolo_form import boloForm
 
+from app.forms.busca_form import BuscaForm
 
 from flask_sqlalchemy import SQLAlchemy
 import flask_sqlalchemy
@@ -42,6 +43,16 @@ def listar():
     pdao = bolo.query.all()
     return render_template('lista_produtos.html',blistar=pdao)
 
+
+
+@bolo_bp.route('/pesquisar', methods=['GET', 'POST'])
+def pesquisar():
+    form = BuscaForm(request.form)
+    p = request.form["pesquisa"]
+
+    if form.validate_on_submit():
+      list=Produto.query.filter(Produto.nome==p).all()
+      return render_template('home.html', form=form, bolos=list, route=request.endpoint)
 
 
 
