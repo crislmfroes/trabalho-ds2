@@ -103,6 +103,7 @@ def editar1():
         bolo.sabor_cobertura = form.saborCobertura.data
         bolo.quantidade = form.estoque.data
         bolo.preco = form.preco.data
+        form.foto.data = bolo.foto
         bolo.foto = form.foto.data
         bolo.tipo = TipoProduto.query.filter_by(cod=form.tipo.data).first()
         arquivo = request.files['foto']
@@ -121,6 +122,7 @@ def editar1():
     form.estoque.data = bolo.quantidade
     form.preco.data = bolo.preco
     form.tipo.data = bolo.tipo.cod
+    form.foto.data = bolo.foto
     return render_template('cadastro_produto.html', form=form, route='bolo_bp.editar1', title='Editar Produto', cod=cod)
 
 

@@ -12,17 +12,15 @@ Cadastro de Produtos
 <br>
 
 <br>
-
+<div class="d-flex justify-content-center">
+<div class="" style="background-image: linear-gradient(to right, #ff000000, #af110c59);width:30%;border-radius: 30px;">
 <h1 class="o textocor textocentro"> <b>Produtos</b></h1>
-
+</div>
+</div>
 <br>
 <br>
 
 
-
-<a href="{{url_for('home_bp.home')}}"><button style="margin: 0 400px;" type="button" class="btn btn-outline-danger btn-lg">Bolos</button></a>
-
-<a href="{{url_for('compra_bp.listar')}}"><button style="margin: 0 90px;" type="button" class="btn btn-outline-danger btn-lg">Carrinho</button></a>
 <br>
 <br>
 <br>
@@ -36,22 +34,50 @@ Cadastro de Produtos
         <input name="pesquisa" style="width: 20%; border-radius: 30px; border: 1px solid rgb(185, 0, 52);"
             class="form-control mr-sm-2" type="search" placeholder="O que você procura?" aria-label="Search">
 
-        
-            <select name="filtro" style="background-color:black; color:white; border-radius: 30px;">
-                <option value="tudo">Tudo</option>
-                <option value="produto">Produto</option>
-                <option value="massa">Sabor de Massa</option>
-                <option value="recheio">Sabor de Recheio</option>
-                <option value="cobertura">Sabor de Cobertura</option>
-                <option value="vendedor">Vendedor</option>
-            </select>
+    
 
-            <select name="tipo" style="background-color:black; color:white; border-radius: 30px;">
+            <div class="dropdown">
+                <button style="background-color:#8B658B; color:white; border-radius: 30px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Item
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                  <a class="dropdown-item"><input type="checkbox" value="nome" name="checkbox">Nome do Produto</a>  
+
+                  <a class="dropdown-item"><input type="checkbox" value="massa" name="checkbox">Sabor da Massa</a>
+
+                  <a class="dropdown-item"><input type="checkbox" value="recheio" name="checkbox">Recheio</a>
+
+                  <a class="dropdown-item"><input type="checkbox" value="cobertura" name="checkbox">Cobertura</a>
+
+                </div>
+              </div>
+
+
+
+            <select name="tipos" style="background-color:#8B658B; color:white; border-radius: 30px;">
             <option value="todostipos">Todos os Tipos</option>
             {% for t in tipos %}
             <option value={{t.nome}}>{{t.nome}}</option>
             {% endfor %}
             </select>
+
+            
+
+
+            <div class="dropdown">
+                <button style="background-color:#8B658B; color:white; border-radius: 30px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Item
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    <input type="radio" name="vendedor" value="todosvendedor">Todos os Vendedores<br><br>
+
+                    <input type="radio" name="vendedor" value="umvendedor">Digite o nome do vendedor<input type="text" name="nomevendedor">
+
+                </div>
+              </div>
+
 
 
         <div class="text-center">
@@ -74,25 +100,25 @@ Cadastro de Produtos
 {% for bolo in bolos %}
 <div class="row">
     <div class="col">
-         <img style="width: 15rem;margin: 0 150px;float:left;" class="card-img-top" src="../static/{{bolo.foto}}" alt="Card image cap">
+         <img style="width: 18rem;margin: 0 150px;float:left;" class="card-img-top" src="../static/{{bolo.foto}}" alt="Card image cap">
         <div style="float:left;">
-            <h3 class="o" style="margin: 0 0px;"> <b>{{bolo.nome}}</b></h3>
+            <h2 class="textocor o" style="margin: 0 0px;"> <b>{{bolo.nome}}</b></h2>
             <br>
 
-            <h4 class="o">Vendedor: {{bolo.vendedor.nome}}</h4>
+            <h3 class="o"><b>Vendedor:</b> {{bolo.vendedor.nome}}</h3>
             <br>
-            <h4 class="o">Sabor da Massa: {{bolo.sabor_massa}}</h4>
+            <h4 class="o"><b>Sabor da Massa:</b> {{bolo.sabor_massa}}</h4>
             <br>
-            <h4 class="o">Sabor do Recheio: {{bolo.sabor_recheio}}</h4>
+            <h4 class="o"><b>Sabor do Recheio:</b> {{bolo.sabor_recheio}}</h4>
             <br>
-            <h4 class="o">Sabor da Cobertura: {{bolo.sabor_cobertura}}</h4>
+            <h4 class="o"><b>Sabor da Cobertura:</b> {{bolo.sabor_cobertura}}</h4>
             <br>
-
+            <h4 class="o"><b>Tipo:</b> {{bolo.tipo.nome}}</h4>
             <br>
             <br>
 
             <h3 class="textocor" style="margin: 0 1px;">Preço:</h3>
-            <h5>R$ {{"${:,.2f}".format(bolo.preco)}}</h5>
+            <h5>R$ {{"{:,.2f}".format(bolo.preco)}}</h5>
             <br>
 
             {% if session.get('isvendedor') != True %}
@@ -102,9 +128,9 @@ Cadastro de Produtos
 
             
 
-            <br>
-            <hr>
-
+            <br><br>
+            <hr style="border-top: 1px solid red; width:100%;">
+            <br><br>
         </div>
     </div>
 <div>

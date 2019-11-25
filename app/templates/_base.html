@@ -29,6 +29,9 @@
             <li class="nav-item">
                 <a class="nav-link" href={{url_for('generic_bp.logout')}}>Logout</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('generic_bp.editar', cod=session.get('codusuario'))}}>Editar Perfil</a>
+            </li>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href={{url_for('generic_bp.login')}}>Login</a>
@@ -37,6 +40,9 @@
             {% if session.get('codvendedor') != None %}
             <li class="nav-item">
                 <a class="nav-link" href={{url_for('generic_bp.logout')}}>Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={{url_for('generic_bp.editar', cod=session.get('codvendedor'))}}>Editar Perfil</a>
             </li>
             {% endif %}
             {% if session.get('isvendedor') == True %}
