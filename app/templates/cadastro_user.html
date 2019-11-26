@@ -4,10 +4,13 @@
 Cadastro de Usuários
 {% endblock %}
 {% block body %}
-<img style="width: 15rem;margin: 0 150px;float:left;" class="card-img-top" src="1.jpg" alt="Card image cap">
-<div style="float:left;">
-    <h3 style="margin: 0 1px;">Cadastrar-se</h3>
+<br>
+<h1 class="o textocor textocentro" style="margin: 0 1px;"><b>Cadastre-se</b></h1>
+<br>
+<div class="d-flex justify-content-center">
     <br>
     {{render_form(form, route, cod=cod)}}
 </div>
+<br>
+<br>
 {% endblock %}

@@ -7,10 +7,7 @@
 
     <br>
 
-    <h2 class="textocentro">BOLOS</h2>
-
-    <br>
-    <br>
+    <h1 class="o textocor textocentro"><b>Finalizar Compra</b></h1>
 
 
     <!--h3 class="textocentro">Insira seu Endereço</h3>
@@ -38,8 +35,8 @@
    <br>
    <br>
 
-   <h5 class="textocentro"> <b> Total a ser Pago: </b> </h5>
-   <h5 class="textocentro">R$ R${{"{:,.2f}".format(preco_total).replace('.', ',')}}</h5>
+   <h5 class="textocor textocentro"> <b> Total a ser Pago: </b> </h5>
+   <h5 class="textocentro">R$ {{"{:,.2f}".format(preco_total).replace('.', ',')}}</h5>
 
 
     {{render_form(form=form, route=route)}}
