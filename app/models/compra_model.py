@@ -13,8 +13,8 @@ class CompraProduto(db.Model):
     codproduto = db.Column(db.Integer, db.ForeignKey('produtos.cod'), primary_key=True)
     quantidade = db.Column(db.Integer)
     preco_unitario = db.Column(db.Float())
-    compra = db.relationship('Compra', backref='lotes')
-    produto = db.relationship('Produto', backref='lotes')
+    compra = db.relationship('Compra', backref='lotes', cascade="all")
+    produto = db.relationship('Produto', backref='lotes', cascade="all, delete-orphan", single_parent=True)
 
 class Compra(db.Model):
     __tablename__ = "compras"

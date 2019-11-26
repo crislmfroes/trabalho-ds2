@@ -23,7 +23,7 @@ class Produto(db.Model):
     preco = db.Column(db.Float())
     codvendedor = db.Column(db.Integer, db.ForeignKey('vendedores.cod'))
     vendedor = db.relationship("Vendedor", backref='produtos')
-    tipo = db.relationship("TipoProduto", backref="produtos")
+    tipo = db.relationship("TipoProduto", backref="produtos", cascade="all")
 
 
     def salva(self):
