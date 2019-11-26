@@ -17,82 +17,84 @@ Cadastro de Produtos
 
 <div class="d-flex justify-content-center">
 
-<table style="width: 80%" class="table table-striped table-active table-hover">
+    <table style="width: 80%" class="table table-striped table-active table-hover">
 
         <tbody>
-        {% for compra in compras %}
-        {% if compra.usuario.cod == session.get('codusuario') %}
-        {% set ns = namespace(total=0, codmodal=0) %}
-        {% for lote in compra.lotes %}
-        {% set ns.total = ns.total + (lote.quantidade*lote.preco_unitario) %}
-        {% endfor %}
-          <tr>
-            <th scope="row"></th>
-            <td>{{compra.data.strftime("%d/%m/%Y")}}</td>
-            <!--td>23:57</td-->
-            <!--td>Bolo de Chocolate</td-->
-            <td>R$ {{ns.total}}</td>
-            <td>Forma de Pagamento: {{compra.pagamento}}</td>
-            <td>
+            {% for compra in compras %}
+            {% if compra.usuario.cod == session.get('codusuario') %}
+            {% set ns = namespace(total=0, codmodal=0) %}
+            {% for lote in compra.lotes %}
+            {% set ns.total = ns.total + (lote.quantidade*lote.preco_unitario) %}
+            {% endfor %}
+            <tr>
+                <th scope="row"></th>
+                <td>{{compra.data.strftime("%d/%m/%Y")}}</td>
+                <!--td>23:57</td-->
+                <!--td>Bolo de Chocolate</td-->
+                <td>R$ {{ns.total}}</td>
+                <td>Forma de Pagamento: {{compra.pagamento}}</td>
+                <td>
 
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal{ns.codmodal}">
-                            + Detalhes
-                        </button>
-    
-    
-                        <div style="color: white" class="modal fade" id="modal{ns.codmodal}" tabindex="-1" role="dialog" aria-labelledby="cod"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div style="background-color: red; background-image: linear-gradient(#7126a3, #971834);" class="modal-content">
-                                    <div class="modal-header d-flex justify-content-center">
-                                        <h1 class="o textocor modal-title" id="cod"> 
-                                            <b>Detalhes da Compra</b></h1>
-    
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{compra.cod}}">
+                        + Detalhes
+                    </button>
+
+
+                    <div style="color: white" class="modal fade" id="{{compra.cod}}" tabindex="-1" role="dialog"
+                        aria-labelledby="{{compra.cod}}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div style="background-color: red; background-image: linear-gradient(#7126a3, #971834);"
+                                class="modal-content">
+                                <div class="modal-header d-flex justify-content-center">
+                                    <h1 class="o textocor modal-title" id="cod">
+                                        <b>Detalhes da Compra</b></h1>
+
+                                </div>
+                                <div class="modal-body">
+
+                                    <div>
+                                        <h4><b>Produto(s) Comprados(s)</b></h4>
                                     </div>
-                                    <div class="modal-body">
-    
-                                        <div>
-                                            <h4><b>Produto(s) Comprados(s)</b></h4>
-                                        </div>
-                                        <br>
-                                        {% for lote in compra.lotes %}
-                                        <p><b> Item: </b></p>
-                                        <p>{{lote.produto.nome}}</p>
-                                        <p><b> Quantidade Comprada </b></p>
-                                        <p>{{lote.quantidade}}</p>
-                                        <p><b> Valor Total </b></p>
-                                        <p>R$ {{lote.quantidade*lote.preco_unitario}}</p>
-                                        <br>
-                                        
-                                        <b> Vendedor </b></p>
-                                            <p>{{lote.produto.vendedor.nome}}</p>
-                                            <br>
-                                            <p><b> Telefone para Contato </b></p>
-                                            <p>{{lote.produto.vendedor.telefone}}</p>
-                                        <br>
-                                        <br>
-                                        <hr style="color:white;">
-                                        <br>
-                                        <br>
-                                        {% endfor %}
-    
+                                    <br>
+                                    {% for lote in compra.lotes %}
+                                    <p><b> Item: </b></p>
+                                    <p>{{lote.produto.nome}}</p>
+                                    <p><b> Quantidade Comprada </b></p>
+                                    <p>{{lote.quantidade}}</p>
+                                    <p><b> Valor Total </b></p>
+                                    <p>R$ {{lote.quantidade*lote.preco_unitario}}</p>
+                                    <br>
+
+                                    <b> Vendedor </b></p>
+                                    <p>{{lote.produto.vendedor.nome}}</p>
+                                    <br>
+                                    <p><b> Telefone para Contato </b></p>
+                                    <p>{{lote.produto.vendedor.telefone}}</p>
+                                    <br>
+                                    <br>
+                                    <hr style="color:white;">
+                                    <br>
+                                    <br>
+                                    {% endfor %}
+
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-light btn-lg"
+                                            data-dismiss="modal">Fechar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-            </td>
-          </tr>
-          {% set ns.codmodal = ns.codmodal + 1 %}
-        {% endif %}
-        {% endfor %}
-        </tbody>
-      </table>
-      
 
-    </div>
+                </td>
+            </tr>
+            {% set ns.codmodal = ns.codmodal + 1 %}
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
 
 
 
