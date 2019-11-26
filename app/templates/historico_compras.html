@@ -22,7 +22,7 @@ Cadastro de Produtos
         <tbody>
         {% for compra in compras %}
         {% if compra.usuario.cod == session.get('codusuario') %}
-        {% set ns = namespace(total=0) %}
+        {% set ns = namespace(total=0, codmodal=0) %}
         {% for lote in compra.lotes %}
         {% set ns.total = ns.total + (lote.quantidade*lote.preco_unitario) %}
         {% endfor %}
@@ -35,12 +35,12 @@ Cadastro de Produtos
             <td>Forma de Pagamento: {{compra.pagamento}}</td>
             <td>
 
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#cod">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal{ns.codmodal}">
                             + Detalhes
                         </button>
     
     
-                        <div style="color: white" class="modal fade" id="cod" tabindex="-1" role="dialog" aria-labelledby="cod"
+                        <div style="color: white" class="modal fade" id="modal{ns.codmodal}" tabindex="-1" role="dialog" aria-labelledby="cod"
                             aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div style="background-color: red; background-image: linear-gradient(#7126a3, #971834);" class="modal-content">
@@ -85,6 +85,7 @@ Cadastro de Produtos
                         
             </td>
           </tr>
+          {% set ns.codmodal = ns.codmodal + 1 %}
         {% endif %}
         {% endfor %}
         </tbody>

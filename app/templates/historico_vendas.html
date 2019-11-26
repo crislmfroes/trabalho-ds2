@@ -21,30 +21,25 @@ Cadastro de Produtos
         <table style="width: 80%" class="table table-dark table-info table-striped table-hover" style="color: white">
 
                 <tbody>
-
-                        {% for compra in compras %}
-                        {% for lote in compra.lotes %}
-                        {% if lote.produto.codvendedor == session.get('codvendedor') %}
-                        {% set ns = namespace(total=0) %}
-                        
-                        {% set ns.total = ns.total + (lote.quantidade*lote.preco_unitario) %}
-                        
-                        
+                    {% set ns = namespace(codmodal=0) %}
+                   {% for compra in compras %}
+                   {% for lote in compra.lotes %}
+                   {% if lote.produto.vendedor.cod == session.get('codvendedor') %}
                   <tr>
                     <th scope="row"></th>
                     <td>{{compra.data.strftime("%d/%m/%Y")}}</td>
                     <td>{{lote.produto.nome}}</td>
                     <!--<td>23:57</td>-->
                     <!--<td>Bolo de Chocolate</td>-->
-                    <td>R$ {{ns.total}}</td>
+                    <td>R$ {{lote.quantidade*lote.preco_unitario}}</td>
                     <td>
         
-                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#cod">
+                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modal{{ns.codmodal}}">
                                     + Detalhes
                                 </button>
             
             
-                                <div style="color: white" class="modal fade" id="cod" tabindex="-1" role="dialog" aria-labelledby="cod"
+                                <div style="color: white" class="modal fade" id="modal{{ns.codmodal}}" tabindex="-1" role="dialog" aria-labelledby="cod"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div style="background-color: red; background-image: linear-gradient(#7126a3, #971834);" class="modal-content">
@@ -55,7 +50,6 @@ Cadastro de Produtos
                                             </div>
                                             <div class="modal-body">
                                                 <br>
-                                                {% for lote in compra.lotes %}
                                                 <h3><b> Item: </b></h3>
                                                 <p>{{lote.produto.nome}}</p>
                                                 <p><b> Quantidade Comprada </b></p>
@@ -75,7 +69,6 @@ Cadastro de Produtos
                                                         <p><b> Telefone para Contato </b></p>
                                                         <p>{{compra.usuario.telefone}}</p>
                                                     </div>
-                                                    {% endfor %}
         
                                             </div>
             
@@ -88,11 +81,11 @@ Cadastro de Produtos
                                 
                     </td>
                   </tr>
-        
-                 
+                  {% set ns.codmodal = ns.codmodal + 1 %}
                   {% endif %}
                   {% endfor %}
                   {% endfor %}
+                 
                 </tbody>
               </table>
               
